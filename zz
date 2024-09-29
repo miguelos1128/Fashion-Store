@@ -1,0 +1,61 @@
+[1mdiff --git a/index.html b/index.html[m
+[1mindex cdf9f81..96ed7af 100644[m
+[1m--- a/index.html[m
+[1m+++ b/index.html[m
+[36m@@ -12,11 +12,20 @@[m
+             text-align: center;[m
+             background-color: #f4f4f4;[m
+         }[m
+[32m+[m[32m        .banner-descuento {[m
+[32m+[m[32m            background-color: #007bff;[m
+[32m+[m[32m            color: white;[m
+[32m+[m[32m            padding: 10px;[m
+[32m+[m[32m            text-align: center;[m
+[32m+[m[32m            border-radius: 5px;[m
+[32m+[m[32m            margin-bottom: 20px;[m
+[32m+[m[32m        }[m
+         .container {[m
+             padding: 20px;[m
+         }[m
+         h1 {[m
+             color: #333;[m
+[32m+[m[32m            font-family: 'Impact', sans-serif; /* Changed font family to Impact */[m
+         }[m
+         .product {[m
+             display: inline-block;[m
+[36m@@ -39,9 +48,13 @@[m
+             height: 150px; /* Alto fijo */[m
+             object-fit: cover; /* Asegura que la imagen se ajuste dentro del tamaño sin distorsión */[m
+             border-radius: 10px; /* Opcional, redondea los bordes de la imagen */[m
+[32m+[m[32m            transition: transform 0.3s ease; /* Added transition effect */[m
+[32m+[m[32m        }[m
+[32m+[m[32m        .product img:hover {[m
+[32m+[m[32m            transform: scale(1.1); /* Increased image size on hover */[m
+         }[m
+         .product button {[m
+[31m-            background-color: #28a745;[m
+[32m+[m[32m            background-color: #007bff;[m
+             color: white;[m
+             border: none;[m
+             padding: 10px;[m
+[36m@@ -50,7 +63,7 @@[m
+             cursor: pointer;[m
+         }[m
+         .product button:hover {[m
+[31m-            background-color: #218838;[m
+[32m+[m[32m            background-color: #0069d9;[m
+         }[m
+     </style>[m
+ </head>[m
+[36m@@ -58,6 +71,11 @@[m
+ [m
+     <div class="container">[m
+         <h1>Fashion Store</h1>[m
+[32m+[m
+[32m+[m[32m        <div class="banner-descuento">[m
+[32m+[m[32m            <p>¡10% de descuento por fin de temporada en toda la tienda! ¡Compra ahora y disfruta de los precios más bajos!</p>[m
+[32m+[m[32m        </div>[m
+[32m+[m
+         <div class="product">[m
+             <img src="https://i.imgur.com/iTLFqXI.jpeg" alt="Producto 1">[m
+             <h2>Bicicleta</h2>[m

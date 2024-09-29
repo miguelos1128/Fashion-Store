@@ -12,11 +12,20 @@
             text-align: center;
             background-color: #f4f4f4;
         }
+        .banner-descuento {
+            background-color: #007bff;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
         .container {
             padding: 20px;
         }
         h1 {
             color: #333;
+            font-family: 'Impact', sans-serif; /* Changed font family to Impact */
         }
         .product {
             display: inline-block;
@@ -39,9 +48,13 @@
             height: 150px; /* Alto fijo */
             object-fit: cover; /* Asegura que la imagen se ajuste dentro del tamaño sin distorsión */
             border-radius: 10px; /* Opcional, redondea los bordes de la imagen */
+            transition: transform 0.3s ease; /* Added transition effect */
+        }
+        .product img:hover {
+            transform: scale(1.1); /* Increased image size on hover */
         }
         .product button {
-            background-color: #28a745;
+            background-color: #007bff;
             color: white;
             border: none;
             padding: 10px;
@@ -50,7 +63,7 @@
             cursor: pointer;
         }
         .product button:hover {
-            background-color: #218838;
+            background-color: #0069d9;
         }
     </style>
 </head>
@@ -58,6 +71,11 @@
 
     <div class="container">
         <h1>Fashion Store</h1>
+
+        <div class="banner-descuento">
+            <p>¡10% de descuento por fin de temporada en toda la tienda! ¡Compra ahora y disfruta de los precios más bajos!</p>
+        </div>
+
         <div class="product">
             <img src="https://i.imgur.com/iTLFqXI.jpeg" alt="Producto 1">
             <h2>Bicicleta</h2>
