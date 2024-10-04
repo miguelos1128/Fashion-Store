@@ -65,10 +65,79 @@
         .product button:hover {
             background-color: #0069d9;
         }
+
+        /* Galeria Estilos */
+        .gallery {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 9999;
+        }
+
+        .gallery-image {
+            display: block;
+            margin: auto;
+            max-width: 80%;
+            max-height: 80%;
+        }
+
+        .gallery-description {
+            margin-top: 20px;
+            color: white;
+        }
+
+        .gallery-controls {
+            position: relative;
+            bottom: 20px;
+            width: 100%;
+            text-align: center;
+
+        }
+
+        .gallery-controls button {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 18px;
+        transition: background-color 0.3s ease;
+        }
+
+        .gallery-controls button:hover {
+            background-color: #f9f9f9;
+        }
+
+        .gallery-controls button:focus {
+            outline: none;
+        }
+
+        .gallery-controls .previous-button {
+            float: left;
+        }
+
+        .gallery-controls .next-button {
+            display: block;
+            margin: auto;
+            float: inline-start;
+        }
+
+        .gallery-controls .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            padding: 5px;
+        }
     </style>
 </head>
 <body>
-
+    
     <div class="container">
         <h1>Fashion Store</h1>
 
@@ -77,37 +146,47 @@
         </div>
 
         <div class="product">
-            <img src="https://i.imgur.com/iTLFqXI.jpeg" alt="Producto 1">
+            <img src="https://i.imgur.com/iTLFqXI.jpeg" alt="Producto 1" onclick="openGallery(0)">
             <h2>Bicicleta</h2>
-            <p>Descubre la comodidad y estilo de nuestros tenis. Perfectos para cualquier ocasión, te ofrecen el soporte ideal y un diseño moderno que te hará destacar.</p>
+            <p>Explora el mundo sobre ruedas con nuestra bicicleta ligera y resistente. Ideal para paseos urbanos o rutas más exigentes, disfruta de la libertad y el aire libre.</p>
             <button onclick="comprarProducto('Producto 1')">Comprar ahora</button>
         </div>
         <div class="product">
-            <img src="https://i.imgur.com/UJKH2kl.jpeg" alt="Producto 2">
+            <img src="https://i.imgur.com/UJKH2kl.jpeg" alt="Producto 2" onclick="openGallery(1)">
             <h2>Smartphone</h2>
-            <p>Nuestra mochila versátil es ideal para llevar todo lo que necesitas, ya sea para el trabajo, la escuela o una aventura. Con amplio espacio y un diseño resistente, es tu compañera perfecta.</p>
+            <p>Lleva la tecnología de última generación en tu bolsillo. Con una cámara espectacular, rendimiento rápido y diseño elegante, este smartphone te mantendrá conectado con estilo.</p>
             <button onclick="comprarProducto('Producto 2')">Comprar ahora</button>
         </div>
         <div class="product">
-            <img src="https://i.imgur.com/sJoXWek.jpeg" alt="Producto 3">
+            <img src="https://i.imgur.com/sJoXWek.jpeg" alt="Producto 3" onclick="openGallery(2)">
             <h2>Computadora </h2>
             <p>Rendimiento y potencia en tus manos. Esta computadora está diseñada para cumplir con todas tus tareas diarias, desde trabajo hasta entretenimiento, con velocidad y eficiencia.</p>
             <button onclick="comprarProducto('Producto 3')">Comprar ahora</button>
         </div>
         <div class="product">
-            <img src="https://i.imgur.com/QSkafAe.jpeg" alt="Producto 4">
+            <img src="https://i.imgur.com/QSkafAe.jpeg" alt="Producto 4" onclick="openGallery(3)">
             <h2>Mochila</h2>
-            <p>Explora el mundo sobre ruedas con nuestra bicicleta ligera y resistente. Ideal para paseos urbanos o rutas más exigentes, disfruta de la libertad y el aire libre.</p>
+            <p>Nuestra mochila versátil es ideal para llevar todo lo que necesitas, ya sea para el trabajo, la escuela o una aventura. Con amplio espacio y un diseño resistente, es tu compañera perfecta.</p>
             <button onclick="comprarProducto('Producto 4')">Comprar ahora</button>
         </div>
         <div class="product">
-            <img src="https://i.imgur.com/uTatSxV.jpeg" alt="Producto 5">
+            <img src="https://i.imgur.com/uTatSxV.jpeg" alt="Producto 5" onclick="openGallery(4)">
             <h2>Tenis</h2>
-            <p>Lleva la tecnología de última generación en tu bolsillo. Con una cámara espectacular, rendimiento rápido y diseño elegante, este smartphone te mantendrá conectado con estilo.</p>
+            <p>Descubre la comodidad y estilo de nuestros tenis. Perfectos para cualquier ocasión, te ofrecen el soporte ideal y un diseño moderno que te hará destacar.</p>
             <button onclick="comprarProducto('Producto 3')">Comprar ahora</button>
         </div>
     </div>
+    
 
+    <div class="gallery" id="gallery">
+        <img class="gallery-image" id="gallery-image" src="" alt="">
+        <p class="gallery-description" id="gallery-description"></p>
+        <div class="gallery-controls">
+            <button class="previous-button" onclick="previousProduct()">⬅️</button>
+            <button class="next-button " onclick="nextProduct()">➡️</button>
+            <button class="close-button" onclick="closeGallery()">X</button>
+        </div>
+    </div>
     <script>
         // Función que genera el enlace de WhatsApp dinámicamente
         function generarEnlaceWhatsApp(producto) {
@@ -122,6 +201,59 @@
         function comprarProducto(producto) {
             var enlace = generarEnlaceWhatsApp(producto);
             window.location.href = enlace;
+        }
+
+        var products = [
+            {
+                image: "https://i.imgur.com/iTLFqXI.jpeg",
+                description: "Explora el mundo sobre ruedas con nuestra bicicleta ligera y resistente. Ideal para paseos urbanos o rutas más exigentes, disfruta de la libertad y el aire libre."
+            },
+            {
+                image: "https://i.imgur.com/UJKH2kl.jpeg",
+                description: "Lleva la tecnología de última generación en tu bolsillo. Con una cámara espectacular, rendimiento rápido y diseño elegante, este smartphone te mantendrá conectado con estilo."
+            },
+            {
+                image: "https://i.imgur.com/sJoXWek.jpeg",
+                description: "Rendimiento y potencia en tus manos. Esta computadora está diseñada para cumplir con todas tus tareas diarias, desde trabajo hasta entretenimiento, con velocidad y eficiencia."
+            },
+            {
+                image: "https://i.imgur.com/QSkafAe.jpeg",
+                description: "Nuestra mochila versátil es ideal para llevar todo lo que necesitas, ya sea para el trabajo, la escuela o una aventura. Con amplio espacio y un diseño resistente, es tu compañera perfecta."
+            },
+            {
+                image: "https://i.imgur.com/uTatSxV.jpeg",
+                description: "Descubre la comodidad y estilo de nuestros tenis. Perfectos para cualquier ocasión, te ofrecen el soporte ideal y un diseño moderno que te hará destacar."
+            }
+        ];
+        var currentProductIndex = 0;
+
+        function openGallery(index) {
+            currentProductIndex = index;
+            var gallery = document.getElementById("gallery");
+            var image = document.getElementById("gallery-image");
+            var description = document.getElementById("gallery-description");
+
+            gallery.style.display = "block";
+            image.src = products[index].image;
+            description.innerHTML = products[index].description;
+        }
+
+        function closeGallery() {
+            document.getElementById("gallery").style.display = "none";
+        }
+
+        function previousProduct() {
+            if (currentProductIndex > 0) {
+                currentProductIndex--;
+                openGallery(currentProductIndex);
+            }
+        }
+
+        function nextProduct() {
+            if (currentProductIndex < products.length - 1) {
+                currentProductIndex++;
+                openGallery(currentProductIndex);
+            }
         }
     </script>
 </body>
